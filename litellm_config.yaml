@@ -2,14 +2,22 @@ general_settings:
   database_connection_pool_limit: 20
 
 model_list:
-  - model_name: fake-openai-endpoint
+  - model_name: gemini-pro
     litellm_params:
-      model: openai/my-fake-model
-      api_key: my-fake-key
-      api_base: https://exampleopenaiendpoint-production.up.railway.app/
+      model: vertex_ai/gemini-pro
+      vertex_project: your-gcp-project-id
+      vertex_location: us-central1  # or your preferred region
+  
+  - model_name: gemini-pro-vision
+    litellm_params:
+      model: vertex_ai/gemini-pro-vision
+      vertex_project: your-gcp-project-id
+      vertex_location: us-central1
 
 litellm_settings:
   drop_params: True
+  vertex_project: "gpip-ai-ta-team"
+  vertex_location: "us-central1"
   success_callback: ["prometheus"]
   failure_callback: ["prometheus"]
   service_callback: ["prometheus_system"]
